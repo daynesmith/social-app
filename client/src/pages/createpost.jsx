@@ -15,7 +15,7 @@ function CreatePost() {
         username: "",
     };
 
-    const validationSchema = Yup.object().shape({
+    const validationSchema = Yup.object().shape({       //client side validation, make sure input values are valid.
         title: Yup.string().required(),
         postText: Yup.string().required(),
         username: Yup.string().min(3).max(25).required(),

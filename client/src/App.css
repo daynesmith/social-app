@@ -181,11 +181,7 @@ button {
   margin-top: 20px;
 }
 
-#individual {
-@@ -156,3 +200,32 @@
-#individual .body {
-  font-size: 25px;
-}
+
 /* LOGIN */
 .loginContainer {
   display: flex;

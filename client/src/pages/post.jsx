@@ -26,11 +26,21 @@ function Post() {
         .post("http://localhost:3001/comments", {
             commentBody: newComment,
              PostId: id,
-            })
+            },
+            {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                }
+            }
+            )
             .then((response) => {
-                const commentToAdd = {commentBody: newComment}
+                if(response.data.error) {
+                    console.log(response.data.error);
+                } else {
+                const commentToAdd = {commentBody: newComment,username: response.data.username}
                 setComments([...comments, commentToAdd])
                 setNewComment("");
+                }
         });
     }
     return(
@@ -56,7 +66,12 @@ function Post() {
                 </div>
                 <div className = "listOfComments">
                     {comments.map((comment, key)=> {
-                        return <div className = "comment">{comment.commentBody}</div>
+                        return (
+                            <div className = "comment">
+                                {comment.commentBody}
+                            <label> Username: {comment.username}</label>
+                            </div>
+                        )
                     })}
                 </div>
             </div>
